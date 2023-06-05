@@ -18,12 +18,6 @@ class MouseInterface(metaclass=MouseMeta):
     def mouseUp(self, button):
         pass
 
-    def mouseLeft(self, button):
-        pass
-
-    def mouseRight(self, button):
-        pass
-
     def position(self) -> tuple:
         return 0, 0
 
