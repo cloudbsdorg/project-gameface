@@ -27,3 +27,23 @@ class DisplayInterface(metaclass=DisplayMeta):
             display["x"],
             display["y"]
         ]
+
+    def set_displays(self, display_list):
+        self.num_displays = len(display_list)
+        i = 0
+        for monitor in display_list:
+            i += 1
+            x = monitor.width
+            y = monitor.height
+            cur_display = {
+                "id": i,
+                "x": x,
+                "y": y,
+                "x1": monitor.x,
+                "y1": monitor.y,
+                "x2": monitor.x + x,
+                "y2": monitor.y + y,
+                "center_x": monitor.x + (x // 2),
+                "center_y": monitor.y + (y // 2)
+            }
+            self.displays.append(cur_display)
