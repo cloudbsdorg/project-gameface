@@ -134,5 +134,5 @@ log.txt
 .idea/
 
 # Make sure configs don't get updated
-configs/profile_*/*
+configs/*
 

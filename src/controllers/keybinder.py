@@ -183,8 +183,7 @@ class Keybinder(metaclass=Singleton):
 
                             x = self.monitors[mon_id]["center_x"]
                             y = self.monitors[mon_id]["center_y"]
-                            self.mouse.moveTo(self.monitors[mon_id]["center_x"],
-                                              self.monitors[mon_id]["center_y"])
+                            self.mouse.moveTo(x, y)
                             self.key_states[state_name] = True
                         elif (val < thres) and (self.key_states[state_name] is
                                                 True):
