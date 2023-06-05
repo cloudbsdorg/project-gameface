@@ -13,9 +13,6 @@ class GenericVirtualMouse(MouseInterface):
         super().__init__()
         self.mouse = Controller()
 
-    def action(self):
-        super().action()
-
     def destroy(self):
         super().destroy()
 
@@ -27,12 +24,6 @@ class GenericVirtualMouse(MouseInterface):
 
     def mouseUp(self, button):
         self.mouse.mouseUp(self.mouseButton[button])
-
-    def mouseLeft(self, button):
-        self.mouse.mouseLeft(self.mouseButton[button])
-
-    def mouseRight(self, button):
-        self.mouse.mouseRight(self.mouseButton[button])
 
     def position(self) -> tuple:
         return self.mouse.position

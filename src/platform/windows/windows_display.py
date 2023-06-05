@@ -10,7 +10,8 @@ class WindowsDisplay(DisplayInterface):
 
     def __init__(self) -> DisplayInterface:
         monitors = win32api.EnumDisplayMonitors()
-        self.num_displays = len(enumerate(monitors))
+        self.num_displays = len(monitors)
+        self.displays = []
         for i, (_, _, loc) in enumerate(monitors):
             cur_display = {
                 "id": i,
