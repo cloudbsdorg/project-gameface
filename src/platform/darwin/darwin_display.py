@@ -1,8 +1,8 @@
 from src.platform.interfaces.display_interface import DisplayInterface
-from screeninfo import get_monitors
+from screeninfo import get_monitors, Enumerator, Monitor
 
 
-class GenericDisplay(DisplayInterface):
+class DarwinDisplay(DisplayInterface):
 
     def __init__(self) -> None:
         super().__init__()
@@ -11,8 +11,8 @@ class GenericDisplay(DisplayInterface):
         # monitors need to be sorted, they are out of order from the get_monitors function
         # My primary was not marked as primary, and not in actual order.
         # the Monitor.x attribute led me to be able to properly sort the monitors
-        # This still needs to be tested.
-        display_list = sorted(get_monitors(), key=lambda display: display.x)
+        # MacOS may need the Enumerator.OSX on some installs, adding as per documentation to be safe
+        display_list = sorted(get_monitors(Enumerator.OSX), key=lambda display: display.x)
         self.num_displays = len(display_list)
         prevXend = 0
         for monitor in display_list:
@@ -36,5 +36,7 @@ class GenericDisplay(DisplayInterface):
                 "center_x": (xStart + xEnd) // 2,
                 "center_y": (yStart + yEnd) // 2
             }
+            prevmonitor = monitor
             self.displays.append(cur_display)
+
 
