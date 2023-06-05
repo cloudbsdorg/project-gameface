@@ -219,5 +219,10 @@ keyboard_keys = {
     "down": "down",
     "left": "left",
     "right": "right",
+
+    # MacOS Keys
+    "meta_r": "meta_r",
+    "meta_l": "meta_l",
+
 }
 available_keyboard_keys = list(keyboard_keys.keys())
