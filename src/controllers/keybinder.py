@@ -50,7 +50,7 @@ class Keybinder(metaclass=Singleton):
         if not self.is_started:
             logger.info("Start Keybinder singleton")
             self.init_states()
-            self.screen_w, self.screen_h = self.display.size()
+            self.screen_w, self.screen_h = self.display.get_current_display_size(self.mouse)
             self.monitors = self.get_monitors()
             self.is_started = True
 
@@ -69,31 +69,12 @@ class Keybinder(metaclass=Singleton):
              ConfigManager().keyboard_bindings))
 
     def get_monitors(self) -> list[dict]:
-        out_list = []
-        monitors = self.display.get_displays()
-        for i, (_, _, loc) in enumerate(monitors):
-            mon_info = {
-                "id": i,
-                "x1": loc[0],
-                "y1": loc[1],
-                "x2": loc[2],
-                "y2": loc[3],
-                "center_x": (loc[0] + loc[2]) // 2,
-                "center_y": (loc[1] + loc[3]) // 2
-            }
-            out_list.append(mon_info)
-
+        out_list = self.display.get_displays()
         return out_list
 
     def get_curr_monitor(self) -> int:
-
-        x, y = self.mouse.position()
-        for mon_id, mon in enumerate(self.monitors):
-            if mon["x1"] <= x <= mon["x2"] \
-                    and mon["y1"] <= y <= mon["y2"]:
-                return mon_id
-        # raise Exception("Monitor not found")
-        return 0
+        mon_id, _ = self.display.get_current_display(self.mouse)
+        return mon_id
 
     # noinspection PyUnusedLocal
     def mouse_action(self, val, action, thres, mode) -> None:
@@ -200,6 +181,8 @@ class Keybinder(metaclass=Singleton):
                             if mon_id is None:
                                 return
 
+                            x = self.monitors[mon_id]["center_x"]
+                            y = self.monitors[mon_id]["center_y"]
                             self.mouse.moveTo(self.monitors[mon_id]["center_x"],
                                               self.monitors[mon_id]["center_y"])
                             self.key_states[state_name] = True

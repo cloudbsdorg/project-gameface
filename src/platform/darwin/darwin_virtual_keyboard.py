@@ -2,7 +2,7 @@ from src.platform.interfaces.keyboard_interface import KeyboardInterface
 from pynput.keyboard import Key, Controller
 
 
-class GenericVirtualKeyboard(KeyboardInterface):
+class DarwinVirtualKeyboard(KeyboardInterface):
 
     keymap = {
         # Numbers
@@ -120,7 +120,6 @@ class GenericVirtualKeyboard(KeyboardInterface):
         "control_r": Key.ctrl_r,
         "alt_l": Key.alt_l,
         "alt_r": Key.alt_r,
-        "num_lock": Key.num_lock,
 
         # Directions
         "up": Key.up,
