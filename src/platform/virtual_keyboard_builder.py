@@ -1,6 +1,9 @@
+import sys
+
 from src.platform import PlatformDetection
 from src.platform.darwin.darwin_virtual_keyboard import DarwinVirtualKeyboard
-from src.platform.generic.generic_virtual_keyboard import GenericVirtualKeyboard
+if sys.platform != 'darwin':
+    from src.platform.generic.generic_virtual_keyboard import GenericVirtualKeyboard
 from src.platform.interfaces import keyboard_interface
 from src.platform.windows.windows_virtual_keyboard import WindowsVirtualKeyboard
 
