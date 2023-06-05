@@ -126,6 +126,10 @@ class DarwinVirtualKeyboard(KeyboardInterface):
         "down": Key.down,
         "left": Key.left,
         "right": Key.right,
+
+        # Mac Keys
+        "meta_r": Key.cmd_r,
+        "meta_l": Key.cmd_l
     }
 
     def __init__(self) -> None:
