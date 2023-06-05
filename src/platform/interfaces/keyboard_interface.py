@@ -6,6 +6,13 @@ class KeyboardMeta(type):
 
 class KeyboardInterface(metaclass=KeyboardMeta):
 
+    def __init__(self, keymap) -> None:
+        super().__init__()
+        self.keymap = keymap
+
+    def get_keymap(self):
+        return self.keymap
+
     def keyDown(self, button):
         pass
 
