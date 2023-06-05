@@ -132,3 +132,7 @@ log.txt
 
 # PyCharm/IntelliJ artifacts
 .idea/
+
+# Make sure configs don't get updated
+configs/profile_*/*
+
