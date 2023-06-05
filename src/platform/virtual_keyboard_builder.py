@@ -152,4 +152,4 @@ class VirtualKeyboardBuilder(PlatformDetection):
             self.keymap["meta_l"] = Key.cmd_l
             return DarwinVirtualKeyboard(self.keymap)
 
-        return GenericVirtualKeyboard()
+        return GenericVirtualKeyboard(self.keymap)
